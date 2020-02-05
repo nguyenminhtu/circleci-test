@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/react-test-circle-ci
     docker:
-      - image: image: circleci/node:10.16.3
+      - image: circleci/node:10.16.3
     steps:
       - checkout
 
@@ -18,7 +18,7 @@ jobs:
       - save_cache:
           key: react-test-circle-ci-{{ checksum "package-lock.json" }}
           paths:
-            - 'node_modules'
+            - "node_modules"
 
       - run:
           name: Run tests
