@@ -22,7 +22,7 @@ jobs:
 
       - run:
           name: Run tests
-          command: yarn test --watchAll=false
+          command: yarn test -u --watchAll=false
 
       - store_artifacts:
           path: test-results
