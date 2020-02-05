@@ -9,14 +9,14 @@ jobs:
 
       - restore_cache:
           keys:
-            - react-test-circle-ci-{{ checksum "package-lock.json" }}
+            - react-test-circle-ci-{{ checksum "yarn.lock" }}
 
       - run:
           name: Install dependencies with yarn
           command: yarn
 
       - save_cache:
-          key: react-test-circle-ci-{{ checksum "package-lock.json" }}
+          key: react-test-circle-ci-{{ checksum "yarn.lock" }}
           paths:
             - "node_modules"
 
