@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  test_code:
     working_directory: ~/react-test-circle-ci
     docker:
       - image: circleci/node:10.16.3
@@ -34,4 +34,8 @@ workflows:
   version: 2
   Build and Test:
     jobs:
-      - build
+      - test_code
+        filters:
+          branches:
+            only:
+              - master
