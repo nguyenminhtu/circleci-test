@@ -1,0 +1,37 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/react-test-circle-ci
+    docker:
+      - image: image: circleci/node:10.16.3
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - react-test-circle-ci-{{ checksum "package-lock.json" }}
+
+      - run:
+          name: Install dependencies with yarn
+          command: yarn
+
+      - save_cache:
+          key: react-test-circle-ci-{{ checksum "package-lock.json" }}
+          paths:
+            - 'node_modules'
+
+      - run:
+          name: Run tests
+          command: yarn test --watchAll=false
+
+      - store_artifacts:
+          path: test-results
+
+      - store_test_results:
+          path: test-results
+
+workflows:
+  version: 2
+  Build and Test:
+    jobs:
+      - build
